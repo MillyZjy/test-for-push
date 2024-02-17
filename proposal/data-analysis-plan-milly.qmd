@@ -3,24 +3,44 @@ title: "Milly- Data Analysis Plan"
 author: "Milly"
 format: html
 ---
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+library(tidyverse)
 ```
 
-You can add options to executable code like this 
+Date: the date of the person's death or date of reported
+Date Type: the type of date, including date of death or reported
+Age: the age of the person
+Sex: the sex of the person
+Race: the race of the person
+Ethnicity: the ethnicity of the person
+Residence City: the person's residence city
+Residence County: the person's residence county
+Residence State: the person's residence state
+Injury City: the person's injury city
+Injury County: the person's injury county
+Injury State: the person's injury state
+Injury Place: the person's specific injury place, including Residence, in car, etc.
+Description of Injury: why the person got injury
+Death City: the city where the person died
+Death County: the county where the person died
+Death State: the state where the person died
+Location: death location of the person
+Location if Other: death location other than Residence and Hospital
+Cause of Death: the cause of the person's death
+Manner of Death: the manner of the person's death
+Other Significant Conditions: other possible causes of the person's death
 
-```{r}
-#| echo: false
-2 * 2
-```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Plan
+
+Which statistical models are best suited to our research questions?
+
+Do our data meet the assumptions required for these analytical techniques?
+
+What criteria will we use to evaluate the results of our analysis?
+
+How will we interpret the models' outputs in the context of our questions?
+
+What potential implications or actions could arise from our findings?
+
+What key messages or insights do we want to convey, and how can we visualize these effectively?

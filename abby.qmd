@@ -1,1 +1,24 @@
+
+#### Introduction
+
+In this part you introduce the questions you are interested in answering with the data frame. 
+What observations and variables this question is concerned with. 
+If you can argue why this question interests you or why it is important even better.
+
+#### Data
+
+`glimpse()` the data
+
+```{r}
 library(tidyverse)
+library(janitor)
+```
+```{r}
+drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
+```
+```{r}
+drug_deaths <- clean_names(drug_deaths)
+glimpse(drug_deaths)
+```
+
+hello

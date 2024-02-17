@@ -6,8 +6,14 @@ editor: visual
 
 What is your primary variable of interest? (Response variable)
 
+Age, sex, race, kind of drug.
+
 What other variables (explanatory variables) will you be using to understand the response variable?
+
 
 Run preliminary analysis (including visuals and descriptive summary statistics) to get some idea about answers to your questions. 
 
 We will learn more about statistical modeling and build on these preliminary analyses later.
+
+
+

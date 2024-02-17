@@ -29,3 +29,16 @@ Location if Other: death location other than Residence and Hospital
 Cause of Death: the cause of the person's death
 Manner of Death: the manner of the person's death
 Other Significant Conditions: other possible causes of the person's death
+
+
+Plan
+
+Which statistical models are best suited to our research questions?
+
+Do our data meet the assumptions required for these analytical techniques?
+
+What criteria will we use to evaluate the results of our analysis?
+
+How will we interpret the models' outputs in the context of our questions?
+
+What potential implications or actions could arise from our findings?

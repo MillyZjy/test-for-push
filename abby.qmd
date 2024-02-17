@@ -1,18 +1,67 @@
 
+## Abby's work
+
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
 #### Introduction
 
 In this part you introduce the questions you are interested in answering with the data frame. 
 What observations and variables this question is concerned with. 
 If you can argue why this question interests you or why it is important even better.
 
+---
+
+##### Questions:
+
+Which age range had the most accidental drug deaths
+
+- This question is concerned with all of the observations depending on their age and how it correlates with the number of accidental drug deaths
+
+- This question is important because it would allow us to infer if there may be a possible trend of a higher risk of accidental drug death at a certain age or as you grow older
+
+Which cause of death resulted in the most deaths
+
+- This is also looking at all of the observations and more specifically looking at the variable cause_of_death and possibly manner_of_death to see which way most people died in accidental drug deaths
+
+- This is important because it allows us to infer if there is a certain cause of death that has the highest mortality rate to possibly develop a solution to prevent or reduce the number of deaths
+
+Do certain cities tend to have higher accidental drug deaths, and if so, due to which drugs
+
+- This question would be looking at the variables death_city and cause_of_death 
+
+- This question is important because if there is a trend between certain cities and cause of death, it would suggest that these cities need to implement better programs to mitigate accidental drug deaths
+
+Is there a trend between different drugs and the number of accidental drug deaths it has caused
+
+- This question would look at the variable cause_of_death and possibly drugs found in the victim's system to figure out which drug had the highest mortality rate
+
+- This question is important because drugs with higher mortality rates or higher rates of usage that lead to higher mortality rates would be informative in planning programs to reduce drug usage
+
+What year had the highest number of accidental drug deaths
+
+- This question would look at the variable date to see if there was a certain year that had the highest number of accidental drug deaths
+
+- This question would be interesting because if there was a huge spike in accidental drug deaths for a certain year, it would lead to more questions about why there was such a spike or why a certain year had so many drug deaths and how to stop it from happening again
+
+Is there a relationship between the age of the person and the type of drug that caused their death
+
+- This question would be looking at the variables age and cause_of_death to determine if there is a certain age or age range where people are more at risk of dying due to accidental drug death and whether certain age groups used certain drugs more often than other age groups
+
+- This question is important because it would help us figure out what the target demographic would be when attempting to mitigate accidental drug deaths
+
+
+
+
 #### Data
 
 `glimpse()` the data
 
-```{r}
-library(tidyverse)
-library(janitor)
-```
+
 ```{r}
 drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
 ```
@@ -20,5 +69,3 @@ drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
 drug_deaths <- clean_names(drug_deaths)
 glimpse(drug_deaths)
 ```
-
-hello

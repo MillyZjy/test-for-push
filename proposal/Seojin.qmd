@@ -4,16 +4,37 @@ format: html
 editor: visual
 ---
 
-What is your primary variable of interest? (Response variable)
+**What is your primary variable of interest? (Response variable)**
 
-Age, sex, race, kind of drug.
+Relationship between drug death and age, sex, type of drugs
 
-What other variables (explanatory variables) will you be using to understand the response variable?
+**What other variables (explanatory variables) will you be using to understand the response variable?**
 
+We will use Age, Sex and types of drugs to understand the response variable
 
-Run preliminary analysis (including visuals and descriptive summary statistics) to get some idea about answers to your questions. 
+**Run preliminary analysis (including visuals and descriptive summary statistics) to get some idea about answers to your questions.**
 
-We will learn more about statistical modeling and build on these preliminary analyses later.
+```{r}
+library(janitor)
+library(tidyverse)
+drug_deaths <- clean_names(drug_deaths)
+glimpse(drug_deaths)
+```
 
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = age)) +
+  geom_histogram()
+```
 
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = death_city)) +
+  geom_bar()
+```
 
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = sex)) +
+  geom_bar()
+```

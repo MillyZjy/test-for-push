@@ -1,3 +1,271 @@
 - Introduction
 - Data
 - Data Analysis Plan
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+## GitHub Repo
+
+Each team has their own repo created for them in the course organization (e.g. `final-teamx`). 
+Everything related to final projects will always go in that repo, from now on until the end of the quarter. 
+Once you start to work on the project, with your team mates make sure to try out some commit, pull, push on a mock document. 
+This way you can see how merge conflicts happen. 
+Make sure to look at your commit history on GitHub.com as well.
+Practice collaboration on GitHub first before starting your real collaboration.
+
+By the end of the quarter, your repo will look something like this:
+
+```
+data/
+|-- some_data.csv
+|-- README.md
+presentation/
+|-- presentation.qmd
+|-- proposal.html
+proposal/
+|-- proposal.qmd
+|-- proposal.html
+README.md
+```
+You will have a data folder which will have the datasets you are using. 
+Presentation folder will have your final presentation.
+Proposal folder will have your proposal.
+
+I expect to see the following in your final project repo for the proposal stage.
+
+- The dataset
+- `README.md` in the data folder
+- `proposal.qmd` and `proposal.html`
+
+### The dataset
+
+The dataset should be in the data folder, as it is downloaded. 
+Do not make any changes by hand to the data. All the changes will have to be made in R. 
+Any format of the dataset is fine (e.g. `.csv`, `.xlsx`) as long as you can read into R that specific format. 
+
+
+### README.md for data
+
+This file as the name suggests is a markdown file. In this file you will write, 
+
+- the source of the data.
+- the number of variables.
+- the number of observations.
+- codebook / data dictionary (what each variable represents)
+
+This file should be in the data folder as it is only about the data you are using.
+
+### proposal.qmd
+
+The `proposal.qmd` file should have 
+
+- Introduction
+- Data
+- Data Analysis Plan
+
+#### Introduction
+
+In this part you introduce the questions you are interested in answering with the data frame. 
+What observations and variables this question is concerned with. 
+If you can argue why this question interests you or why it is important even better.
+
+#### Data
+
+`glimpse()` the data
+
+#### Data Analysis Plan
+
+What is your primary variable of interest? (Response variable)
+
+What other variables (explanatory variables) will you be using to understand the response variable?
+
+Run preliminary analysis (including visuals and descriptive summary statistics) to get some idea about answers to your questions. 
+
+We will learn more about statistical modeling and build on these preliminary analyses later.
+
+
+## Grading
+|concept|points|criteria| 
+|---|---|---|
+|data |2 pts|data are provided. <br>`README.md` in data folder contains codebook. <br>Information on data download source, number of variables, and observations are provided.   |   
+|proposal   | 5 pts  |Structure of the proposal.qmd is well organized as outlined here. <br>All the content parts are provided. The code provided is machine- and human-readable. <br>Visuals and numerical summaries are appropriate for the research questions. <br>Accessibility is considered. | 
+|workflow   | 2 pts  |Data are read using the here package. <br> There are reasonable number of commits. <br> Commit messages are labeled in a meaningful way.   |  
+|team work  | 1 pt  |all team members have made meaningful commits to the repo.|  
+
+I expect all teams to share work and collaborate efficiently. 
+Everyone should get an opportunity to learn and grow through these projects. 
+If there is evidence from teammates' evaluations and commit history that a teammate has not contributed enough to the project, I hold the right to assign a different grade for the team member at any stage of the project (proposal or final submission).
+If you run into any conflicts that you cannot resolve among yourselves, please e-mail me to let me know what is going on. 
+Also, let me know how you resolved the conflict.
+For instance, if a teammate has been unresponsive, let me know how and when you tried reaching the teammate.
+
+
+
+
+#### Introduction
+
+In this part you introduce the questions you are interested in answering with the data frame. 
+What observations and variables this question is concerned with. 
+If you can argue why this question interests you or why it is important even better.
+
+---
+
+##### Questions:
+
+Which age range had the most accidental drug deaths
+
+- This question is concerned with all of the observations depending on their age and how it correlates with the number of accidental drug deaths
+
+- This question is important because it would allow us to infer if there may be a possible trend of a higher risk of accidental drug death at a certain age or as you grow older
+
+Which cause of death resulted in the most deaths
+
+- This is also looking at all of the observations and more specifically looking at the variable cause_of_death and possibly manner_of_death to see which way most people died in accidental drug deaths
+
+- This is important because it allows us to infer if there is a certain cause of death that has the highest mortality rate to possibly develop a solution to prevent or reduce the number of deaths
+
+Do certain cities tend to have higher accidental drug deaths, and if so, due to which drugs
+
+- This question would be looking at the variables death_city and cause_of_death 
+
+- This question is important because if there is a trend between certain cities and cause of death, it would suggest that these cities need to implement better programs to mitigate accidental drug deaths
+
+Is there a trend between different drugs and the number of accidental drug deaths it has caused
+
+- This question would look at the variable cause_of_death and possibly drugs found in the victim's system to figure out which drug had the highest mortality rate
+
+- This question is important because drugs with higher mortality rates or higher rates of usage that lead to higher mortality rates would be informative in planning programs to reduce drug usage
+
+What year had the highest number of accidental drug deaths
+
+- This question would look at the variable date to see if there was a certain year that had the highest number of accidental drug deaths
+
+- This question would be interesting because if there was a huge spike in accidental drug deaths for a certain year, it would lead to more questions about why there was such a spike or why a certain year had so many drug deaths and how to stop it from happening again
+
+Is there a relationship between the age of the person and the type of drug that caused their death
+
+- This question would be looking at the variables age and cause_of_death to determine if there is a certain age or age range where people are more at risk of dying due to accidental drug death and whether certain age groups used certain drugs more often than other age groups
+
+- This question is important because it would help us figure out what the target demographic would be when attempting to mitigate accidental drug deaths
+
+
+
+
+#### Data
+
+`glimpse()` the data
+
+
+```{r}
+drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
+```
+```{r}
+drug_deaths <- clean_names(drug_deaths)
+glimpse(drug_deaths)
+```
+
+
+#### Data Analysis Plan
+
+**What is your primary variable of interest? (Response variable)**
+
+Relationship between drug death and age, sex, type of drugs
+
+**What other variables (explanatory variables) will you be using to understand the response variable?**
+
+We will use Age, Sex and types of drugs to understand the response variable
+
+**Run preliminary analysis (including visuals and descriptive summary statistics) to get some idea about answers to your questions.**
+
+```{r}
+library(janitor)
+library(tidyverse)
+drug_deaths <- clean_names(drug_deaths)
+glimpse(drug_deaths)
+```
+
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = age)) +
+  geom_histogram()
+```
+
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = death_city)) +
+  geom_bar()
+```
+
+```{r}
+library(tidyverse)
+ggplot(drug_deaths, aes(x = sex)) +
+  geom_bar()
+```
+
+Plan (milly's work)
+ 
+Which statistical models are best suited to our research questions?
+mostly bar plot
+
+What criteria will we use to evaluate the results of our analysis?
+The relation between death date, drug use, sex, age, and ethnicity
+
+What key messages or insights do we want to convey, and how can we visualize these effectively?
+We want to discuss the relationship between death and some social and physical factors.
+We visualize it by using graphs and analysis to interpret it.
+
+What potential implications or actions could arise from our findings?
+
+
+Drug use condition:
+
+drug_deaths |> 
+select(heroin, cocaine, fentanyl, fentanyl_analogue, oxycodone, oxymorphone, ethanol, hydrocodone, benzodiazepine, methadone, meth_amphetamine, amphet, tramad, hydromorphone, morphine_not_heroin, xylazine, gabapentin, opiate_nos, heroin_morph_codeine, other_opioid, any_opioid, other)
+ggplot()
+
+(need to collapse all these drugs into one factor with each drug being a level)
+
+I have no idea about how to make this into a graph...
+
+The relation between race and death:
+
+clean_drug_deaths|>
+  mutate(race = as.factor(race))
+clean_drug_deaths|>
+  count(race)
+ggplot(clean_drug_deaths, aes(x = race))+
+  geom_bar()
+
+This graph shows that most of people died is Black people and then is Black of African American.
+
+The relation between ethnicity and death:
+
+clean_drug_deaths|>
+  mutate(ethnicity = as.factor(ethnicity))
+clean_drug_deaths|>
+  count(ethnicity)
+  ggplot(clean_drug_deaths, aes(x = ethnicity))+
+  geom_bar()
+
+This graph shows that most of the ethnicity is unknown and the biggest proportion is Hispanic.
+
+The relation between the residence state of the person and death
+
+clean_drug_deaths|>
+  ggplot(aes(x= residence_state))+
+  geom_bar()
+
+Most of died people was lived in CT.
+
+The relation between death date and drug use?
+
+
+The relation between where the person died and their age
+
+clean_drug_deaths|>
+  ggplot(aes(x=location,
+             y=age))+
+  geom_boxplot()

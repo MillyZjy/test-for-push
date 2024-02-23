@@ -164,9 +164,35 @@ drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
 ```
 ```{r}
 drug_deaths <- clean_names(drug_deaths)
-glimpse(drug_deaths)
 ```
 
+```{r}
+drug_deaths <-
+drug_deaths |> 
+mutate(heroin = as.factor(heroin),
+       heroin_death_certificate_dc = as.factor(heroin_death_certificate_dc),
+       cocaine = as.factor(cocaine),
+       fentanyl = as.factor(fentanyl),
+       fentanyl_analogue = as.factor(fentanyl_analogue),
+       oxycodone = as.factor(oxycodone),
+       oxymorphone = as.factor(oxymorphone),
+       ethanol = as.factor(ethanol),
+       hydrocodone = as.factor(hydrocodone),
+       benzodiazepine = as.factor(benzodiazepine),
+       methadone = as.factor(methadone),
+       meth_amphetamine = as.factor(meth_amphetamine),
+       amphet = as.factor(amphet),
+       tramad = as.factor(tramad),
+       hydromorphone = as.factor(hydromorphone),
+       morphine_not_heroin = as.factor(morphine_not_heroin),
+       xylazine = as.factor(xylazine),
+       gabapentin = as.factor(opiate_nos),
+       heroin_morph_codeine = as.factor(heroin_morph_codeine),
+       other_opioid = as.factor(other_opioid),
+       any_opioid = as.factor(any_opioid),
+       other = as.factor(other))
+glimpse(drug_deaths)
+``` 
 
 #### Data Analysis Plan
 
@@ -222,35 +248,7 @@ What potential implications or actions could arise from our findings?
 
 Drug use condition:
 
-```{r}
-drug_deaths <-
-drug_deaths |> 
-mutate(heroin = as.factor(heroin),
-       heroin_death_certificate_dc = as.factor(heroin_death_certificate_dc),
-       cocaine = as.factor(cocaine),
-       fentanyl = as.factor(fentanyl),
-       fentanyl_analogue = as.factor(fentanyl_analogue),
-       oxycodone = as.factor(oxycodone),
-       oxymorphone = as.factor(oxymorphone),
-       ethanol = as.factor(ethanol),
-       hydrocodone = as.factor(hydrocodone),
-       benzodiazepine = as.factor(benzodiazepine),
-       methadone = as.factor(methadone),
-       meth_amphetamine = as.factor(meth_amphetamine),
-       amphet = as.factor(amphet),
-       tramad = as.factor(tramad),
-       hydromorphone = as.factor(hydromorphone),
-       morphine_not_heroin = as.factor(morphine_not_heroin),
-       xylazine = as.factor(xylazine),
-       gabapentin = as.factor(opiate_nos),
-       heroin_morph_codeine = as.factor(heroin_morph_codeine),
-       other_opioid = as.factor(other_opioid),
-       any_opioid = as.factor(any_opioid),
-       other = as.factor(other))
 
-
-
-``` 
 (need to collapse all these drugs into one factor with each drug being a level)
 
 I have no idea about how to make this into a graph...

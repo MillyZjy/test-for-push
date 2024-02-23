@@ -164,6 +164,7 @@ drug_deaths <- readr::read_csv(here::here("data/drug_deaths.csv"))
 ```
 ```{r}
 drug_deaths <- clean_names(drug_deaths)
+count(drug_deaths, amphet)
 ```
 
 ```{r}
@@ -190,8 +191,41 @@ mutate(heroin = as.factor(heroin),
        heroin_morph_codeine = as.factor(heroin_morph_codeine),
        other_opioid = as.factor(other_opioid),
        any_opioid = as.factor(any_opioid),
-       other = as.factor(other))
+       other = as.factor(other),
+       race = as.factor(race),
+       ethnicity = as.factor(ethnicity))
 glimpse(drug_deaths)
+
+drug_deaths <-
+drug_deaths |> 
+  mutate(drugs = case_when(
+    cocaine == "Y" ~ "cocaine",
+    heroin == "Y" ~ "heroin",
+    fentanyl == "Y" ~ "fentanyl",
+    fentanyl_analogue == "Y" ~ "fentanyl_analogue",
+    oxycodone == "Y" ~ "oxycodone",
+    oxymorphone == "Y" ~ "oxymorphone",
+    ethanol == "Y" ~ "ethanol",
+    hydrocodone == "Y" ~ "hydrocodone",
+    benzodiazepine == "Y" ~ "benzodiazepine",
+    methadone == "Y" ~ "methadone",
+    meth_amphetamine == "Y" ~ "meth_amphetamine",
+    amphet == "Y" ~ "amphet",
+    tramad == "Y" ~ "tramad",
+    hydromorphone == "Y" ~ "hydromorphone",
+    morphine_not_heroin == "Y" ~ "morphine_not_heroin",
+    xylazine == "Y" ~ "xylazine",
+    gabapentin == "Y" ~ "gabapentin",
+    heroin_morph_codeine == "Y" ~ "heroin_morph_codeine",
+    other_opioid == "Y" ~ "other_opioid",
+    any_opioid == "Y" ~ "any_opioid",
+    other == "Y" ~ "other"))
+
+drug_deaths |> 
+  ggplot(aes(x = drugs)) +
+  geom_bar()
+
+count(drug_deaths, drugs)
 ``` 
 
 #### Data Analysis Plan
@@ -223,6 +257,7 @@ ggplot(drug_deaths, aes(x = age)) +
 library(tidyverse)
 ggplot(drug_deaths, aes(x = death_city)) +
   geom_bar()
+count(drug_deaths, death_city)
 ```
 
 ```{r}
@@ -255,32 +290,31 @@ I have no idea about how to make this into a graph...
 
 The relation between race and death:
 
-clean_drug_deaths|>
-  mutate(race = as.factor(race))
-clean_drug_deaths|>
-  count(race)
-ggplot(clean_drug_deaths, aes(x = race))+
+```{r}
+drug_deaths |> 
+ggplot(aes(x = race))+
   geom_bar()
+```
 
 This graph shows that most of people died is Black people and then is Black of African American.
 
 The relation between ethnicity and death:
 
-clean_drug_deaths|>
-  mutate(ethnicity = as.factor(ethnicity))
-clean_drug_deaths|>
-  count(ethnicity)
-  ggplot(clean_drug_deaths, aes(x = ethnicity))+
+```{r}
+drug_deaths |>
+  ggplot(aes(x = ethnicity))+
   geom_bar()
+```
 
 This graph shows that most of the ethnicity is unknown and the biggest proportion is Hispanic.
 
 The relation between the residence state of the person and death
 
-clean_drug_deaths|>
+```{r}
+drug_deaths |>
   ggplot(aes(x= residence_state))+
   geom_bar()
-
+```
 Most of died people was lived in CT.
 
 The relation between death date and drug use?
@@ -288,7 +322,9 @@ The relation between death date and drug use?
 
 The relation between where the person died and their age
 
-clean_drug_deaths|>
+```{r}
+drug_deaths |>
   ggplot(aes(x=location,
              y=age))+
   geom_boxplot()
+```

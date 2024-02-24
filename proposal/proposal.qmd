@@ -469,7 +469,7 @@ cause_of_death_plot
 
 
 ```{r}
-drug_deaths <- full_join(drug_deaths, df)
+drug_deaths <- full_join(drug_deaths, cause_of_death_df)
 ```
 
 ```{r}

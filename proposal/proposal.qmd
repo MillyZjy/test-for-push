@@ -332,6 +332,7 @@ drug_deaths |>
   ))|>
   ggplot(aes(x = major_ethnicity))+
            geom_bar()
+
 ```
 - "S/H/P" is Spanish/Hispanic/Latino
 - "Other S/H/P" is other Spanish/Hispanic/Latino

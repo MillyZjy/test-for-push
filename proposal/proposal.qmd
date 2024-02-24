@@ -448,15 +448,25 @@ acute_heroin_toxicity_deaths <-
 ```
 
 ```{r}
-df <- data.frame(cause_of_death = c("acute_and_chronic_substance_abuse_deaths", "acute_and_chronic_substance_use_deaths", "acute_cocaine_and_alcohol_intoxication_deaths", "acute_cocaine_and_ethanol_intoxication_deaths", "acute_cocaine_and_fentanyl_intoxication_deaths", "acute_cocaine_and_fentanyl_toxicities_deaths", "acute_cocaine_and_heroin_intoxication_deaths", "acute_cocaine_and_heroin_toxicities_deaths", "acute_cocaine_intoxication_deaths", 
+cause_of_death_df <- data.frame(cause_of_death = c("acute_and_chronic_substance_abuse_deaths", "acute_and_chronic_substance_use_deaths", "acute_cocaine_and_alcohol_intoxication_deaths", "acute_cocaine_and_ethanol_intoxication_deaths", "acute_cocaine_and_fentanyl_intoxication_deaths", "acute_cocaine_and_fentanyl_toxicities_deaths", "acute_cocaine_and_heroin_intoxication_deaths", "acute_cocaine_and_heroin_toxicities_deaths", "acute_cocaine_intoxication_deaths", 
 "acute_cocaine_toxicity_deaths", "acute_fentanyl_and_alcohol_intoxication_deaths", "acute_fentanyl_and_alcohol_toxicities_deaths", "acute_fentanyl_and_ethanol_intoxication_deaths", "acute_fentanyl_and_ethanol_toxicities_deaths", "acute_fentanyl_and_heroin_intoxication_deaths", "acute_fentanyl_and_heroin_toxicities_deaths", "acute_fentanyl_intoxication_deaths",
 "acute_fentanyl_toxicity_deaths",
 "acute_heroin_and_alcohol_intoxication_deaths", "acute_heroin_and_alcohol_toxicities_deaths", "acute_heroin_and_ethanol_intoxication_deaths", "acute_heroin_and_ethanol_toxicities_deaths",
 "acute_heroin_intoxication_deaths",
 "acute_heroin_toxicity_deaths"),
                  number_of_deaths = c(104, 31, 3, 10, 91, 19, 31, 24, 153, 25, 10, 4, 52, 1, 48, 64, 629, 55, 8, 11, 13, 1, 166, 125))
-print(df)
+print(cause_of_death_df)
 ```
+
+```{r}
+cause_of_death_plot <- 
+  ggplot(cause_of_death_df,
+       aes(x = cause_of_death,
+           y = number_of_deaths)) +
+  geom_boxplot()
+cause_of_death_plot
+```
+
 
 ```{r}
 drug_deaths <- full_join(drug_deaths, df)
@@ -493,25 +503,25 @@ drug_deaths |>
 ```
 
 ```{r}
-number_of_drug_deaths_plot <- 
-  filter(drug_deaths, number_of_drug_deaths != "NA") |> 
-  select(cause_of_death, number_of_drug_deaths)
-```
-
-```{r}
-ggplot(number_of_drug_deaths_plot,
-       aes(x = number_of_drug_deaths)) +
-  geom_histogram()
+cause_of_death_plot
 ```
 
 
 Do certain cities tend to have higher accidental drug deaths, and if so, due to which drugs
 
 
+
 Is there a trend between different drugs and the number of accidental drug deaths it has caused
 
 
+
+
 What year had the highest number of accidental drug deaths
+
+```{r}
+glimpse(drug_deaths)
+```
+
 
 
 Is there a relationship between the age of the person and the type of drug that caused their death

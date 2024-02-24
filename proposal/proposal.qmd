@@ -258,6 +258,7 @@ library(tidyverse)
 ggplot(drug_deaths, aes(x = death_city)) +
   geom_bar()
 count(drug_deaths, death_city)
+
 ```
 
 ```{r}
@@ -286,25 +287,56 @@ Drug use condition:
 The relation between race and death:
 
 ```{r}
-drug_deaths |> 
-ggplot(aes(x = race))+
+drug_deaths|>
+  count(race)
+drug_deaths|>
+mutate(major_race = case_when(
+  race == "Black" ~ "Black",
+  race == "Black or African American" ~ "African American",
+  race == "White" ~ "White",
+  race == "Uknown" ~ "Other",
+  race == "American Indian or Alaska Native" ~ "Other",
+  race == "Asian Indian" ~ "Other",
+  race == "Asian Other" ~ "Other",
+  race == "Chinese" ~ "Other",
+  race == "Hawaiian" ~ "Other",
+  race == "Korean" ~ "Other",
+  race == "Native American" ~ "Other",
+  race == "Other" ~ "Other",
+  race == "Other Asian" ~ "Other"
+))|>
+  ggplot(aes(x = major_race))+
   geom_bar()
+theme_set(theme_gray(base_size = 18))
 ```
+Because if we list all the race, the graph will be too messy. Therefore, we choose 3 major race and mutate other race into other to make the visualization clearer.
 
 This graph shows that most of people died is Black people and then is Black of African American.
 
 The relation between ethnicity and death:
-
 ```{r}
-drug_deaths |>
-  ggplot(aes(x = ethnicity))+
-  geom_bar()
-```
+drug_deaths|>
+  count(ethnicity)
 
-This graph shows that most of the ethnicity is unknown and the biggest proportion is Hispanic.
+drug_deaths |>
+  mutate(major_ethnicity = case_when(
+    ethnicity == "Hispanic" ~ "Hispanic",
+    ethnicity == "Other Spanish/Hispanic/Latino" ~ "Other S/H/P",
+    ethnicity == "Spanish/Hispanic/Latino" ~ "S/H/P",
+    ethnicity == "Cuban" ~ "Other",
+    ethnicity == "Mexican, Mexican American, Chicano" ~ "Other",
+    ethnicity == "Not Spanish/Hispanic/Latino" ~ "Other",
+    ethnicity == "Puerto Rican" ~ "Other",
+    ethnicity == "Unknown" ~ "Other",
+  ))|>
+  ggplot(aes(x = major_ethnicity))+
+           geom_bar()
+```
+- "S/H/P" is Spanish/Hispanic/Latino
+- "Other S/H/P" is other Spanish/Hispanic/Latino
+- This graph shows that most of the ethnicity is unknown and the biggest proportion is Hispanic.
 
 The relation between the residence state of the person and death
-
 ```{r}
 drug_deaths |>
   ggplot(aes(x= residence_state))+
@@ -327,12 +359,12 @@ The manner of death
 drug_deaths|>
   ggplot(aes(x = manner_of_death))+
   geom_bar()
+theme_set(theme_gray(base_size = 15))
 ```
 
 Abby's work
 
 Which age range had the most accidental drug deaths
-
 ```{r}
 ggplot(drug_deaths,
        aes(x = age)) +
@@ -507,6 +539,8 @@ cause_of_death_plot
 ```
 
 
+Possible future research questions we can do:
+
 Do certain cities tend to have higher accidental drug deaths, and if so, due to which drugs
 
 
@@ -515,12 +549,7 @@ Is there a trend between different drugs and the number of accidental drug death
 
 
 
-
 What year had the highest number of accidental drug deaths
-
-```{r}
-glimpse(drug_deaths)
-```
 
 
 

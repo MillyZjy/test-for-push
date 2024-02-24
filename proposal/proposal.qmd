@@ -328,3 +328,190 @@ drug_deaths |>
              y=age))+
   geom_boxplot()
 ```
+
+Abby's work
+
+Which age range had the most accidental drug deaths
+
+```{r}
+ggplot(drug_deaths,
+       aes(x = age)) +
+  geom_histogram()
+```
+
+Which cause of death resulted in the most deaths
+
+```{r}
+drug_deaths <- 
+  drug_deaths |> 
+  mutate(cause_of_death = as.character(cause_of_death))
+drug_deaths <- 
+  drug_deaths |> 
+  mutate(cause_of_death = str_to_lower(cause_of_death))
+
+acute_and_chronic_substance_abuse_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute and chronic substance abuse") |> 
+  sum()
+acute_and_chronic_substance_use_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute and chronic substance use") |> 
+  sum()
+```
+
+```{r}
+acute_cocaine_and_alcohol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and alcohol intoxication|acute alcohol and cocaine intoxication") |> 
+  sum()
+
+acute_cocaine_and_ethanol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and ethanol intoxication|acute ethanol and cocaine intoxication") |> 
+  sum()
+
+acute_cocaine_and_fentanyl_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and fentanyl intoxication|acute fentanyl and cocaine intoxication") |> 
+  sum()
+
+acute_cocaine_and_fentanyl_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and fentanyl toxicities|acute fentanyl and cocaine toxicities") |> 
+  sum()
+
+acute_cocaine_and_heroin_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and heroin intoxication|acute heroin and cocaine intoxication") |> 
+  sum()
+
+acute_cocaine_and_heroin_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine and heroin toxicities|acute heroin and cocaine toxicities") |> 
+  sum()
+
+acute_cocaine_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine intoxication") |> 
+  sum()
+
+acute_cocaine_toxicity_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute cocaine toxicity") |> 
+  sum()
+
+acute_fentanyl_and_alcohol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and alcohol intoxication|acute alcohol and fentanyl intoxication") |> 
+  sum()
+
+acute_fentanyl_and_alcohol_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and alcohol toxicities|acute alcohol and fentanyl toxicities") |> 
+  sum()
+
+acute_fentanyl_and_ethanol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and ethanol intoxication|acute ethanol and fentanyl intoxication") |> 
+  sum()
+
+acute_fentanyl_and_ethanol_toxicity_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and ethanol toxicity|acute ethanol and fentanyl toxicity") |> 
+  sum()
+
+acute_fentanyl_and_heroin_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and heroin intoxication|acute heroin and fentanyl intoxication") |> 
+  sum()
+
+acute_fentanyl_and_heroin_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl and heroin toxicities|acute heroin and fentanyl toxicities") |> 
+  sum()
+
+acute_fentanyl_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl intoxication") |> 
+  sum()
+
+acute_fentanyl_toxicity_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute fentanyl toxicity") |> 
+  sum()
+
+acute_heroin_and_alcohol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin and alcohol intoxication|acute alcohol and heroin intoxication") |> 
+  sum()
+
+acute_heroin_and_alcohol_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin and alcohol toxicities|acute alcohol and heroin toxicities") |> 
+  sum()
+
+acute_heroin_and_ethanol_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin and ethanol intoxication|acute ethanol and heroin intoxication") |> 
+  sum()
+
+acute_heroin_and_ethanol_toxicities_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin and ethanol toxicities|acute ethanol and heroin toxicities") |> 
+  sum()
+
+acute_heroin_intoxication_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin intoxication") |> 
+  sum()
+
+acute_heroin_toxicity_deaths <- 
+  str_detect(drug_deaths$cause_of_death, "acute heroin toxicity") |> 
+  sum()
+```
+
+```{r}
+df <- data.frame(cause_of_death = c("acute_and_chronic_substance_abuse_deaths", "acute_and_chronic_substance_use_deaths", "acute_cocaine_and_alcohol_intoxication_deaths", "acute_cocaine_and_ethanol_intoxication_deaths", "acute_cocaine_and_fentanyl_intoxication_deaths", "acute_cocaine_and_fentanyl_toxicities_deaths", "acute_cocaine_and_heroin_intoxication_deaths", "acute_cocaine_and_heroin_toxicities_deaths", "acute_cocaine_intoxication_deaths", 
+"acute_cocaine_toxicity_deaths", "acute_fentanyl_and_alcohol_intoxication_deaths", "acute_fentanyl_and_alcohol_toxicities_deaths", "acute_fentanyl_and_ethanol_intoxication_deaths", "acute_fentanyl_and_ethanol_toxicities_deaths", "acute_fentanyl_and_heroin_intoxication_deaths", "acute_fentanyl_and_heroin_toxicities_deaths", "acute_fentanyl_intoxication_deaths",
+"acute_fentanyl_toxicity_deaths",
+"acute_heroin_and_alcohol_intoxication_deaths", "acute_heroin_and_alcohol_toxicities_deaths", "acute_heroin_and_ethanol_intoxication_deaths", "acute_heroin_and_ethanol_toxicities_deaths",
+"acute_heroin_intoxication_deaths",
+"acute_heroin_toxicity_deaths"),
+                 number_of_deaths = c(104, 31, 3, 10, 91, 19, 31, 24, 153, 25, 10, 4, 52, 1, 48, 64, 629, 55, 8, 11, 13, 1, 166, 125))
+print(df)
+```
+
+```{r}
+drug_deaths <- full_join(drug_deaths, df)
+```
+
+```{r}
+drug_deaths <- 
+drug_deaths |> 
+  mutate(number_of_drug_deaths = case_when(
+    cause_of_death == "acute_and_chronic_substance_abuse_deaths" ~ 104,
+    cause_of_death == "acute_and_chronic_substance_use_deaths" ~ 31,
+    cause_of_death == "acute_cocaine_and_alcohol_intoxication_deaths" ~ 3,
+    cause_of_death == "acute_cocaine_and_ethanol_intoxication_deaths" ~ 10,
+    cause_of_death == "acute_cocaine_and_fentanyl_intoxication_deaths" ~ 91,
+    cause_of_death == "acute_cocaine_and_fentanyl_toxicities_deaths" ~ 19,
+    cause_of_death == "acute_cocaine_and_heroin_intoxication_deaths" ~ 31,
+    cause_of_death == "acute_cocaine_and_heroin_toxicities_deaths" ~ 24,
+    cause_of_death == "acute_cocaine_intoxication_deaths" ~ 153,
+    cause_of_death == "acute_cocaine_toxicity_deaths" ~ 25,
+    cause_of_death == "acute_fentanyl_and_alcohol_intoxication_deaths" ~ 10,
+    cause_of_death == "acute_fentanyl_and_alcohol_toxicities_deaths" ~ 4,
+    cause_of_death == "acute_fentanyl_and_ethanol_intoxication_deaths" ~ 52,
+    cause_of_death == "acute_fentanyl_and_ethanol_toxicities_deaths" ~ 1,
+    cause_of_death == "acute_fentanyl_and_heroin_intoxication_deaths" ~ 48,
+    cause_of_death == "acute_fentanyl_and_heroin_toxicities_deaths" ~ 64,
+    cause_of_death == "acute_fentanyl_intoxication_deaths" ~ 629,
+    cause_of_death == "acute_fentanyl_toxicity_deaths" ~ 55,
+    cause_of_death == "acute_heroin_and_alcohol_intoxication_deaths" ~ 8,
+    cause_of_death == "acute_heroin_and_alcohol_toxicities_deaths" ~ 11,
+    cause_of_death == "acute_heroin_and_ethanol_intoxication_deaths" ~ 13,
+    cause_of_death == "acute_heroin_and_ethanol_toxicities_deaths" ~ 1,
+    cause_of_death == "acute_heroin_intoxication_deaths" ~ 166,
+    cause_of_death == "acute_heroin_toxicity_deaths" ~ 125))
+```
+
+```{r}
+number_of_drug_deaths_plot <- 
+  filter(drug_deaths, number_of_drug_deaths != "NA") |> 
+  select(cause_of_death, number_of_drug_deaths)
+```
+
+```{r}
+ggplot(number_of_drug_deaths_plot,
+       aes(x = number_of_drug_deaths)) +
+  geom_histogram()
+```
+
+
+Do certain cities tend to have higher accidental drug deaths, and if so, due to which drugs
+
+
+Is there a trend between different drugs and the number of accidental drug deaths it has caused
+
+
+What year had the highest number of accidental drug deaths
+
+
+Is there a relationship between the age of the person and the type of drug that caused their death

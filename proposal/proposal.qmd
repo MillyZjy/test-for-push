@@ -283,11 +283,6 @@ What potential implications or actions could arise from our findings?
 
 Drug use condition:
 
-
-(need to collapse all these drugs into one factor with each drug being a level)
-
-I have no idea about how to make this into a graph...
-
 The relation between race and death:
 
 ```{r}
@@ -317,8 +312,6 @@ drug_deaths |>
 ```
 Most of died people was lived in CT.
 
-The relation between death date and drug use?
-
 
 The relation between where the person died and their age
 
@@ -327,6 +320,13 @@ drug_deaths |>
   ggplot(aes(x=location,
              y=age))+
   geom_boxplot()
+```
+
+The manner of death
+```{r}
+drug_deaths|>
+  ggplot(aes(x = manner_of_death))+
+  geom_bar()
 ```
 
 Abby's work
